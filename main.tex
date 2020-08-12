@@ -1,0 +1,188 @@
+\documentclass[12pt, letterpaper]{report}
+%\usepackage[paperwidth=8.5in, paperheight=11in]{geometry}
+%\special{papersize=8.5in,11in}
+%\usepackage[letterpaper]{geometry}
+%\usepackage[pass,letterpaper]{geometry}
+%\usepackage{geometry}
+\usepackage[english]{babel}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{vmargin}
+\usepackage{lipsum}
+%Saeed packages
+%\usepackage[caption=false]{subfig}
+\usepackage{amsmath,graphicx,url,bbm}
+\usepackage{amssymb}
+\usepackage{tabularx,esdiff,algorithm, mathtools,xparse,subcaption,subfiles}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage{multirow}
+%End of Saeed packages
+\usepackage[dvipsnames]{xcolor}
+
+%Bob packages not already included above
+\usepackage{titlesec} % For \subsubsubsection
+%\usepackage{hyperref} % For \subsubsubsection and \texorpdfstring.
+\usepackage[hidelinks]{hyperref} % For \subsubsubsection and \texorpdfstring
+
+\usepackage{booktabs}
+\usepackage{multirow}
+%\usepackage{siunitx}
+\usepackage{makecell}
+%\usepackage{dashrule}
+\usepackage{xcolor}
+\usepackage{colortbl}
+
+%End of Bob packages
+
+%%%%%%%%%%%%%%
+% New command to draw "DRAFT" watermark on every page.
+\newcommand{\drawwatermark}
+{
+%\usepackage{draftwatermark}
+\usepackage[printwatermark]{xwatermark}
+%\newwatermark*[allpages,color=red!15,angle=45,scale=2.7,xpos=0,ypos=0]{\bfseries\sffamily %DRAFT}
+\usepackage{tikz}
+\newsavebox\mybox
+\savebox\mybox{\tikz[color=red,opacity=0.1]\node{DRAFT};}
+\newwatermark*[
+  allpages,
+  angle=45,
+  scale=7,
+  xpos=0,
+  ypos=5
+]{\usebox\mybox}
+}
+
+% Comment or uncomment the following line to put a "DRAFT" watermark on every page
+%\drawwatermark
+
+%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%
+%
+% Define \subsubsubsection
+%
+\usepackage{titlesec}
+%\usepackage{hyperref}   %This is already included above
+
+\titleclass{\subsubsubsection}{straight}[\subsection]
+
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+  {3.25ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+\makeatother
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+%%%%%%%%%%%%%%
+
+
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+
+
+\setpapersize{USletter}
+\setmarginsrb{3 cm}{2.5 cm}{3 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
+
+
+
+
+
+\makeatletter
+\let\thetitle\@title
+
+\let\thedate\@date
+\makeatother
+
+\pagestyle{fancy}
+\fancyhf{}
+%\rhead{\theauthor}
+%\rhead{\rightmark}
+\rhead{}
+%\lhead{\thetitle}
+\lhead{\thedate}
+\cfoot{\thepage}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{title_page/cover_page}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents
+%\pagebreak
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+\input{abstract/abstract}
+
+\newpage
+\chapter{Introduction}
+\input{chapters/intro}
+
+\newpage
+\chapter{Background and Literature Survey}
+\input{chapters/litreview}
+
+\newpage
+\chapter{Methods}
+\input{chapters/methods}
+
+\newpage
+\chapter{Experiments and Results}
+\input{chapters/experiments}
+
+\newpage
+\chapter{Analysis}
+\input{chapters/analysis}
+
+\newpage
+\section{Conclusions}
+\input{chapters/conclusion}
+
+\newpage
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{ieeetr}
+\bibliography{refs}
+
+\end{document}
