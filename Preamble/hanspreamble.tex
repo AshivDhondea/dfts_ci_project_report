@@ -1,0 +1,163 @@
+\documentclass[openright,english,12pt]{report}
+
+%Include packages you need to use here
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%\usepackage{filecontents} obsolete package. March 2020.
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=32mm,bmargin=27mm,lmargin=21mm,rmargin=19mm,headheight=10mm,headsep=12mm,footskip=12mm}
+\usepackage{bm}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+\usepackage{array}
+\usepackage{float}
+\usepackage{setspace}
+% ------------------ My own stuff
+\usepackage{amsmath}
+\usepackage{amsfonts,amsthm,amssymb}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{colortbl} % 18 may 2017
+% Fancy chapter appearance. More in fncychap.pdf
+\usepackage[Lenny]{fncychap}
+\ChNumVar{\fontsize{54}{56}\usefont{OT1}{ptm}{m}{n}\selectfont\textcolor{Maroon}}
+\ChTitleVar{\huge\rm\bfseries}
+
+\usepackage[pagebackref]{hyperref} % Link back to page
+%\usepackage[backref]{hyperref} % Link back to section
+\usepackage[hyperpageref]{backref} % ctong thesis
+\renewcommand*{\backref}[1]{[#1]} % http://jblevins.org/log/latex-tips
+\usepackage{footnotebackref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=RoyalBlue,
+    filecolor=BlueViolet,      
+    urlcolor=Blue,
+   citecolor =MidnightBlue,
+}
+\urlstyle{same}
+\usepackage[figure]{hypcap} %make hyperlink to figures jump to show entire figure ctong thesis
+\usepackage[shortcuts]{extdash} %%Allows words with hyphens in them (e.g. multi-site) to be new-line split at the existing hyphen. (e.g use multi\-/site) ctong thesis
+\usepackage{textcomp}
+\usepackage{epigraph}
+\usepackage{array}
+\usepackage{blindtext}
+\usepackage{mdframed} % For framed boxes
+\usepackage{booktabs}
+\setlength{\heavyrulewidth}{1.5pt}
+\setlength{\abovetopsep}{4pt}
+\setlength{\headheight}{33pt}
+\usepackage[toc,acronym]{glossaries} % include glossaries after hyperref
+\setacronymstyle{long-short}
+\usepackage{xparse}
+
+\input{Preamble/hansglossary}
+%---- let's resume my packages
+\usepackage{algorithm,tocloft}
+\renewcommand*{\cftdotsep}{1} % http://tex.stackexchange.com/questions/186077/adjust-format-of-list-of-algorithms
+\usepackage{algpseudocode}
+
+\algdef{SE}[DOWHILE]{Do}{doWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}%
+\usepackage{epigraph}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+% 10 march 2017
+% http://tex.stackexchange.com/questions/110412/numbering-in-algorithmicx
+\makeatletter
+\@addtoreset{algorithm}{chapter}% algorithm counter resets every chapter
+\makeatother
+\renewcommand{\thealgorithm}{\thechapter.\arabic{algorithm}}% Algorithm # is <chapter>.<algorithm>
+
+\usepackage{multirow}
+
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\DeclareMathOperator{\arctantwo}{arctan2}
+
+\usepackage[autostyle,english=british]{csquotes}
+\MakeOuterQuote{"}
+
+\usepackage{url}
+\urlstyle{same}
+
+\newtheorem*{remark}{Remark}
+%% 11 March 2016
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[chapter] % reset theorem numbering for each chapter
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition} % definition numbers are dependent on theorem numbers
+\newtheorem{exmp}[thm]{Example} % same for example numbers
+\newtheorem{corollary}[thm]{Corollary}
+\newtheorem{lemma}[thm]{Lemma}
+%% 
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{lmodern} % load a font with all the characters
+\usepackage{color}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+  
+%-------------------------------
+%To make the report easy to read.
+\onehalfspacing
+
+\newlength\Origarrayrulewidth
+\newcommand{\Cline}[1]{%
+  \noalign{\global\setlength\Origarrayrulewidth{\arrayrulewidth}}%
+  \noalign{\global\setlength\arrayrulewidth{1.5pt}}\cline{#1}%
+  \noalign{\global\setlength\arrayrulewidth{\Origarrayrulewidth}}%
+}
+
+% change figure format
+\renewcommand*{\thefigure}{\thechapter-\arabic{figure}}
+\renewcommand*{\thetable}{\thechapter-\arabic{table}}
+\renewcommand*{\theequation}{\thechapter-\arabic{equation}}
+
+%To number subsubsections but don't put them in the contents. Required for internal references to these sections through the text
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{2}
+
+% from ctong-thesis
+\fancyhf{}
+\fancyhead[CO]{\rightmark}
+\fancyfoot[C]{\thepage}
+
+\usepackage{fancyvrb}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage[nice]{nicefrac}
+% 19.12.16
+
+\newcommand*{\defeq}{\mathrel{\vcenter{\baselineskip0.5ex \lineskiplimit0pt
+			\hbox{\scriptsize.}\hbox{\scriptsize.}}}%
+	=}
+
+\usepackage{verbatimbox}
+\usepackage[none]{hyphenat}
+\usepackage[super]{nth}
+\usepackage{soul}
+\usepackage[final]{pdfpages}
+
+\usepackage{adjustbox}
+
+\usepackage[inline]{enumitem}
+
+% for watermarking
+%\usepackage{draftwatermark}
+%
+%\SetWatermarkText{Draft by Ashiv Hans Dhondea: \today}
+%\SetWatermarkColor{Red}
+%\SetWatermarkScale{1.2}
+%\SetWatermarkFontSize{1cm}
+%\SetWatermarkAngle{45}
+%\SetWatermarkHorCenter{20cm}
